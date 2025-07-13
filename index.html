@@ -224,6 +224,8 @@
         flex: 1;
         justify-content: center;
         min-width: 100px;
+        border: none;
+        cursor: pointer;
       }
 
       .btn:hover {
@@ -435,6 +437,65 @@
         font-size: 1.2rem;
         font-weight: bold;
       }
+
+      /* Purchase Success Modal */
+      .purchase-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .purchase-modal.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .purchase-modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7);
+        transition: transform 0.3s ease;
+      }
+
+      .purchase-modal.show .purchase-modal-content {
+        transform: scale(1);
+      }
+
+      .purchase-modal h3 {
+        color: #28a745;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .purchase-modal p {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .purchase-modal .btn {
+        margin-top: 10px;
+      }
+
+      .success-icon {
+        font-size: 3rem;
+        color: #28a745;
+        margin-bottom: 15px;
+      }
     </style>
   </head>
   <body>
@@ -490,9 +551,13 @@
                 tertandingi.
               </p>
               <div class="product-actions">
-                <a href="#" class="btn"
-                  ><i data-feather="credit-card"></i> Beli</a
+                <button
+                  class="btn buy-btn"
+                  data-product-name="Samsung Galaxy S24 Ultra"
+                  data-product-price="18999000"
                 >
+                  <i data-feather="credit-card"></i> Beli
+                </button>
                 <button
                   class="btn btn-secondary add-to-cart"
                   data-product-name="Samsung Galaxy S24 Ultra"
@@ -518,9 +583,13 @@
                 terjangkau.
               </p>
               <div class="product-actions">
-                <a href="#" class="btn"
-                  ><i data-feather="credit-card"></i> Beli</a
+                <button
+                  class="btn buy-btn"
+                  data-product-name="OnePlus 12"
+                  data-product-price="13999000"
                 >
+                  <i data-feather="credit-card"></i> Beli
+                </button>
                 <button
                   class="btn btn-secondary add-to-cart"
                   data-product-name="OnePlus 12"
@@ -546,9 +615,13 @@
                 dan fitur high-end.
               </p>
               <div class="product-actions">
-                <a href="#" class="btn"
-                  ><i data-feather="credit-card"></i> Beli</a
+                <button
+                  class="btn buy-btn"
+                  data-product-name="Xiaomi 15"
+                  data-product-price="11999000"
                 >
+                  <i data-feather="credit-card"></i> Beli
+                </button>
                 <button
                   class="btn btn-secondary add-to-cart"
                   data-product-name="Xiaomi 15"
@@ -574,9 +647,13 @@
                 Serta Menggunakan Nothing OS Terbaru
               </p>
               <div class="product-actions">
-                <a href="#" class="btn"
-                  ><i data-feather="credit-card"></i> Beli</a
+                <button
+                  class="btn buy-btn"
+                  data-product-name="Nothing Phone 2"
+                  data-product-price="9999000"
                 >
+                  <i data-feather="credit-card"></i> Beli
+                </button>
                 <button
                   class="btn btn-secondary add-to-cart"
                   data-product-name="Nothing Phone 2"
@@ -602,9 +679,13 @@
                 maksimal.
               </p>
               <div class="product-actions">
-                <a href="#" class="btn"
-                  ><i data-feather="credit-card"></i> Beli</a
+                <button
+                  class="btn buy-btn"
+                  data-product-name="iQOO 13"
+                  data-product-price="10999000"
                 >
+                  <i data-feather="credit-card"></i> Beli
+                </button>
                 <button
                   class="btn btn-secondary add-to-cart"
                   data-product-name="iQOO 13"
@@ -657,6 +738,16 @@
       </div>
     </div>
 
+    <!-- Purchase Success Modal -->
+    <div class="purchase-modal" id="purchase-modal">
+      <div class="purchase-modal-content">
+        <div class="success-icon">✓</div>
+        <h3>Berhasil Membeli!</h3>
+        <p id="purchase-message">Terima kasih telah membeli produk kami!</p>
+        <button class="btn" id="close-modal-btn">Tutup</button>
+      </div>
+    </div>
+
     <script>
       // Initialize Feather Icons
       feather.replace();
@@ -666,6 +757,10 @@
         const cartIconBtn = document.getElementById("cart-icon-btn");
         const cartCloseBtn = document.getElementById("cart-close-btn");
         const addToCartBtns = document.querySelectorAll(".add-to-cart");
+        const buyBtns = document.querySelectorAll(".buy-btn");
+        const purchaseModal = document.getElementById("purchase-modal");
+        const purchaseMessage = document.getElementById("purchase-message");
+        const closeModalBtn = document.getElementById("close-modal-btn");
         const cartItemsList = document.getElementById("cart-items");
         const cartTotalPriceElement =
           document.getElementById("cart-total-price");
@@ -745,6 +840,19 @@
           }).format(angka);
         }
 
+        // Fungsi untuk menampilkan modal pembelian
+        function showPurchaseModal(productName, productPrice) {
+          purchaseMessage.textContent = `Terima kasih telah membeli ${productName} dengan harga ${formatRupiah(
+            productPrice
+          )}!`;
+          purchaseModal.classList.add("show");
+        }
+
+        // Fungsi untuk menyembunyikan modal pembelian
+        function hidePurchaseModal() {
+          purchaseModal.classList.remove("show");
+        }
+
         // Event listener untuk tombol keranjang di navbar
         cartIconBtn.addEventListener("click", (e) => {
           e.preventDefault();
@@ -763,6 +871,27 @@
             );
             addToCart(productName, productPrice);
           });
+        });
+
+        // Event listener untuk tombol "Beli" di setiap produk
+        buyBtns.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const productName = button.getAttribute("data-product-name");
+            const productPrice = parseInt(
+              button.getAttribute("data-product-price")
+            );
+            showPurchaseModal(productName, productPrice);
+          });
+        });
+
+        // Event listener untuk tombol tutup modal
+        closeModalBtn.addEventListener("click", hidePurchaseModal);
+
+        // Event listener untuk menutup modal ketika mengklik area luar modal
+        purchaseModal.addEventListener("click", (e) => {
+          if (e.target === purchaseModal) {
+            hidePurchaseModal();
+          }
         });
       });
     </script>
