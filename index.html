@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EXORT TECH - Flagship Store Handphone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+      /* Reset dan Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Mengganti font menjadi Poppins */
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      /* Header Styles */
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-menu a:hover {
+        color: #ffd700;
+      }
+
+      .nav-menu svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300 Q300,100 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>');
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .cta-button {
+        background: #ffd700;
+        color: #333;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        background: #ffed4a;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+      }
+
+      /* Product Grid */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: #666;
+        border-bottom: 1px solid #eee;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-name {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #667eea;
+        margin-bottom: 1rem;
+      }
+
+      .product-description {
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        background: #667eea;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+        flex: 1;
+        justify-content: center;
+        min-width: 100px;
+      }
+
+      .btn:hover {
+        background: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-secondary {
+        background: #28a745;
+      }
+
+      .btn-secondary:hover {
+        background: #218838;
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* Footer */
+      .footer {
+        background: #333;
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer h3 {
+        margin-bottom: 1rem;
+        color: #ffd700;
+      }
+
+      .footer-info {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-info a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-info a:hover {
+        color: #ffd700;
+        text-decoration: underline;
+      }
+
+      /* Aturan CSS baru untuk warna link Hubungi Kami */
+      .contact-link {
+        color: #2563eb;
+      }
+
+      .contact-link:hover {
+        color: #dc2626;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-menu {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-info {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .product-actions {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 1.5rem;
+        }
+
+        .container {
+          padding: 0 10px;
+        }
+      }
+
+      /* Cart Styles */
+      .cart-sidebar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        background-color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        transform: translateX(120%);
+        transition: transform 0.4s ease-in-out;
+        z-index: 100;
+      }
+
+      .cart-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+
+      .cart-header h3 {
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .cart-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #888;
+        transition: color 0.3s;
+      }
+
+      .cart-close:hover {
+        color: #333;
+      }
+
+      #cart-items {
+        list-style: none;
+        padding: 0;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .cart-item-info {
+        flex: 1;
+      }
+
+      .cart-item-name {
+        font-weight: bold;
+      }
+
+      .cart-item-price {
+        color: #667eea;
+      }
+
+      .cart-item-remove {
+        background: none;
+        border: none;
+        color: #dc3545;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .cart-item-remove:hover {
+        color: #c82333;
+      }
+
+      .cart-total {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 2px solid #eee;
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav-container">
+        <a href="#home" class="logo">EXORT TECH</a>
+        <nav>
+          <ul class="nav-menu">
+            <li>
+              <a href="#search"><i data-feather="search"></i> Search</a>
+            </li>
+            <li>
+              <a href="#" id="cart-icon-btn"
+                ><i data-feather="shopping-cart"></i> Keranjang</a
+              >
+            </li>
+            <li>
+              <a href="index2.html" class="contact-link"
+                ><i data-feather="mail"></i> Hubungi Kami</a
+              >
+            </li>
+            <li>
+              <a href="#menu"><i data-feather="menu"></i> Menu</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>EXORT TECH</h1>
+        <p>Handphone Resmi Harga Terjangkau</p>
+        <a href="#produk" class="cta-button">Lihat Produk</a>
+      </div>
+    </section>
+
+    <section id="produk" class="section">
+      <div class="container">
+        <h2 class="section-title">Produk Unggulan</h2>
+        <div class="product-grid">
+          <div class="product-card" data-product-id="s24u">
+            <div class="product-image">
+              <img src="Images/Product 1.jpg" alt="Samsung Galaxy S24 Ultra" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Samsung Galaxy S24 Ultra</h3>
+              <div class="product-price">Rp 18.999.000</div>
+              <p class="product-description">
+                Layar 6,8" Dynamic AMOLED 2X, chipset Snapdragon 8 Gen 3, kamera
+                200MP, desain titanium, S Pen bawaan, baterai 5.000mAh, dan AI
+                canggih—flagship premium dengan performa dan inovasi tak
+                tertandingi.
+              </p>
+              <div class="product-actions">
+                <a href="#" class="btn"
+                  ><i data-feather="credit-card"></i> Beli</a
+                >
+                <button
+                  class="btn btn-secondary add-to-cart"
+                  data-product-name="Samsung Galaxy S24 Ultra"
+                  data-product-price="18999000"
+                >
+                  <i data-feather="shopping-cart"></i> Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" data-product-id="op12">
+            <div class="product-image">
+              <img src="Images/Product 2.jpg" alt="OnePlus 12" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">OnePlus 12</h3>
+              <div class="product-price">Rp 13.999.000</div>
+              <p class="product-description">
+                Layar 6,82" Fluid AMOLED 120Hz, Snapdragon 8 Gen 3, kamera
+                Hasselblad 50MP, baterai 5.400mAh dengan fast charging 100W, dan
+                OxygenOS yang ringan—flagship tangguh dengan harga lebih
+                terjangkau.
+              </p>
+              <div class="product-actions">
+                <a href="#" class="btn"
+                  ><i data-feather="credit-card"></i> Beli</a
+                >
+                <button
+                  class="btn btn-secondary add-to-cart"
+                  data-product-name="OnePlus 12"
+                  data-product-price="13999000"
+                >
+                  <i data-feather="shopping-cart"></i> Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" data-product-id="xiao15">
+            <div class="product-image">
+              <img src="Images/Product 3.jpg" alt="Xiaomi 15" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Xiaomi 15</h3>
+              <div class="product-price">Rp 11.999.000</div>
+              <p class="product-description">
+                Layar 6,7″ AMOLED 120Hz, Snapdragon 8 Gen 4, kamera 50MP Leica
+                dengan low-light canggih, baterai 5.000mAh + 120W fast charging,
+                dan desain premium. Flagship bertenaga dengan harga kompetitif
+                dan fitur high-end.
+              </p>
+              <div class="product-actions">
+                <a href="#" class="btn"
+                  ><i data-feather="credit-card"></i> Beli</a
+                >
+                <button
+                  class="btn btn-secondary add-to-cart"
+                  data-product-name="Xiaomi 15"
+                  data-product-price="11999000"
+                >
+                  <i data-feather="shopping-cart"></i> Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" data-product-id="np2">
+            <div class="product-image">
+              <img src="Images/Product 4.jpg" alt="Nothing Phone 2" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Nothing Phone 2</h3>
+              <div class="product-price">Rp 9.999.000</div>
+              <p class="product-description">
+                Desain unik LED Glyph, layar 6,7″ LTPO OLED 120Hz, Snapdragon 8+
+                Gen 1, kamera ganda 50MP, baterai 4.700mAh + 45W wireless
+                charging. Stylish dengan pengalaman Android minimalis dan unik.
+                Serta Menggunakan Nothing OS Terbaru
+              </p>
+              <div class="product-actions">
+                <a href="#" class="btn"
+                  ><i data-feather="credit-card"></i> Beli</a
+                >
+                <button
+                  class="btn btn-secondary add-to-cart"
+                  data-product-name="Nothing Phone 2"
+                  data-product-price="9999000"
+                >
+                  <i data-feather="shopping-cart"></i> Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card" data-product-id="iQOO 13">
+            <div class="product-image">
+              <img src="Images/Product 5.jpg " alt="iQOO 13"">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">iQOO 13</h3>
+              <div class="product-price">Rp 10.999.000</div>
+              <p class="product-description">
+                Layar 6,78″ E6 AMOLED 144Hz, Snapdragon 8 Gen 3, kamera 50MP
+                gimbal stabilizer, baterai 5.000mAh + 200W fast charging. Fokus
+                performa gaming dengan cooling system canggih dan responsivitas
+                maksimal.
+              </p>
+              <div class="product-actions">
+                <a href="#" class="btn"
+                  ><i data-feather="credit-card"></i> Beli</a
+                >
+                <button
+                  class="btn btn-secondary add-to-cart"
+                  data-product-name="iQOO 13"
+                  data-product-price="10999000"
+                >
+                  <i data-feather="shopping-cart"></i> Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <h3>EXORT TECH</h3>
+        <div class="footer-info">
+          <div>
+            <h4>Kontak Person</h4>
+            <p>Iwan Setiawan</p>
+            <p>NIM: 20924753</p>
+          </div>
+          <div>
+            <h4>Informasi Kontak</h4>
+            <p>📞 085171722568</p>
+            <p>📧 Exort.Tech347@Gmail.com</p>
+            <a href="index2.html" class="contact-link footer-link"
+              >Hubungi Kami</a
+            >
+          </div>
+          <div>
+            <h4>Alamat</h4>
+            <p>Jalan Teratai Raya No 153 Rancaekek Kencana Bandung</p>
+            <p>Exort Tech Flagship Store</p>
+          </div>
+        </div>
+        <p>&copy; 2025 EXORT TECH. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h3>Keranjang Belanja</h3>
+        <button class="cart-close" id="cart-close-btn">&times;</button>
+      </div>
+      <ul id="cart-items"></ul>
+      <div class="cart-total">
+        Total: <span id="cart-total-price">Rp 0</span>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Feather Icons
+      feather.replace();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartSidebar = document.getElementById("cart-sidebar");
+        const cartIconBtn = document.getElementById("cart-icon-btn");
+        const cartCloseBtn = document.getElementById("cart-close-btn");
+        const addToCartBtns = document.querySelectorAll(".add-to-cart");
+        const cartItemsList = document.getElementById("cart-items");
+        const cartTotalPriceElement =
+          document.getElementById("cart-total-price");
+        let cart = [];
+
+        // Fungsi untuk menampilkan/menyembunyikan keranjang
+        function toggleCart() {
+          cartSidebar.classList.toggle("open");
+        }
+
+        // Fungsi untuk mengupdate tampilan keranjang
+        function updateCartDisplay() {
+          cartItemsList.innerHTML = "";
+          let totalPrice = 0;
+
+          cart.forEach((item, index) => {
+            const listItem = document.createElement("li");
+            listItem.classList.add("cart-item");
+
+            const itemInfo = document.createElement("div");
+            itemInfo.classList.add("cart-item-info");
+
+            const itemName = document.createElement("div");
+            itemName.classList.add("cart-item-name");
+            itemName.textContent = item.name;
+            itemInfo.appendChild(itemName);
+
+            const itemPrice = document.createElement("div");
+            itemPrice.classList.add("cart-item-price");
+            itemPrice.textContent = formatRupiah(item.price);
+            itemInfo.appendChild(itemPrice);
+
+            const removeBtn = document.createElement("button");
+            removeBtn.classList.add("cart-item-remove");
+            removeBtn.innerHTML = "&times;";
+            removeBtn.addEventListener("click", () => {
+              removeFromCart(index);
+            });
+
+            listItem.appendChild(itemInfo);
+            listItem.appendChild(removeBtn);
+            cartItemsList.appendChild(listItem);
+
+            totalPrice += item.price;
+          });
+
+          cartTotalPriceElement.textContent = formatRupiah(totalPrice);
+        }
+
+        // Fungsi untuk menambahkan item ke keranjang
+        function addToCart(productName, productPrice) {
+          const product = {
+            name: productName,
+            price: productPrice,
+          };
+          cart.push(product);
+          updateCartDisplay();
+          // Buka keranjang setelah menambahkan produk
+          if (!cartSidebar.classList.contains("open")) {
+            cartSidebar.classList.add("open");
+          }
+        }
+
+        // Fungsi untuk menghapus item dari keranjang
+        function removeFromCart(index) {
+          cart.splice(index, 1);
+          updateCartDisplay();
+        }
+
+        // Fungsi untuk memformat harga ke Rupiah
+        function formatRupiah(angka) {
+          return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }).format(angka);
+        }
+
+        // Event listener untuk tombol keranjang di navbar
+        cartIconBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleCart();
+        });
+
+        // Event listener untuk tombol tutup di keranjang
+        cartCloseBtn.addEventListener("click", toggleCart);
+
+        // Event listener untuk tombol "Keranjang" di setiap produk
+        addToCartBtns.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const productName = button.getAttribute("data-product-name");
+            const productPrice = parseInt(
+              button.getAttribute("data-product-price")
+            );
+            addToCart(productName, productPrice);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
